@@ -10,4 +10,4 @@ for i in range(1, (len(a))):
         NewStr += a[i]
         counter = 1
 NewStr += str(counter)
-print(NewStr)
+print(f'{a} -> {NewStr}')
