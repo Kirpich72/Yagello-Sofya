@@ -1,16 +1,18 @@
 print('вариант заданий: 2')
 print('Task 1')
-a = list(map(float, eval(input('введите список: '))))
+n = int(input('введите n: '))
+print('введите n-чисел:')
+a = [float(input()) for i in range(n)]
 d = float(input('введите d: '))
 count = 0
 SrArifm = (sum(a))/(len(a))
 for i in a:
-    if abs((SrArifm - i)) <= abs(d):
+    if (abs(SrArifm) - abs(i)) <= abs(d):
         count += 1
 print('ответ =', count)
 
 
-print('Task 2')
+print('Task 2.1')
 n = int(input('введите n: '))
 matr = []
 
@@ -25,11 +27,8 @@ print(f'вписывайте по одной строке, числа через
 for i in range(2*n+1):
     matr.append(list(map(float, (input()).split())))
 centr = abs(matr[n][n])
-AllCount = 0
 for i in range(0, n+1, 2):
     start = n - (i//2)
     end = n + (i//2) + 1
-    count = sum(abs(element) < centr for string in matr[start:end] for element in string[start:end])
-    AllCount += count
+    count = sum(abs(element) > centr for string in matr[start:end] for element in string[start:end])
     print(f'Порядок = {i+1}: кол-во элементов = {count}')
-print(f'Кол-во элеметнов во всей матрице больше центрального = {AllCount}')
