@@ -1,17 +1,21 @@
-#task1
+#variant 22
+#task1. 7 level
 def outed(meet, boss):
-    s = 0
-    n = 0
-    for i, j in meet.items():
-        s += j
-        n += 1
-    srznach = s/n
-    if srznach <= 5:
+    if (sum(meet.values())+meet[boss])/(len(meet)) <= 5:
         return 'Get Out Now!'
     else:
         return 'Nice Work Champ!'
-#task2
-
-#task3
+        
+#task2. 6 level
+def wave(people):
+    spisok = []
+    for i in range(len(people)):
+        if people[i] == " ":
+            continue
+        else:  
+            spisok.append(people[:i] + people[i].upper() + people[i+1:])
+    return spisok
+    
+#task3. 5 level
 def make_readable(seconds):
     return(f'{(seconds//3600):02d}:{(seconds%3600//60):02d}:{(seconds%60):02d}')
