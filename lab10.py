@@ -40,7 +40,7 @@ def test_binary_search_range_all_element_similiar_return_index_range():1
     res =  binary_search_range([2,2,2], 2)
     assert res == (0, 2)
 
-#номер 2 (не исправленный)
+#номер 2 
 def is_balanced_brackets(s):
     skobki = {')':'(', ']':'[', '}':'{'}
     ochered = []
