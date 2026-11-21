@@ -45,9 +45,9 @@ def is_balanced_brackets(s):
     skobki = {')':'(', ']':'[', '}':'{'}
     ochered = []
     for i in s:
-        if i in skobki:
+        if i in skobki.values():
             ochered.append(i)
-        elif i in skobki.values():
+        elif i in skobki:
             if ochered and (ochered[-1] == skobki[i]):
                 ochered.pop(-1)
             else: return False
