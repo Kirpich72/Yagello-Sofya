@@ -39,35 +39,34 @@ def test_binary_search_range_many_element_in_list_return_index_ragnge():
 def test_binary_search_range_all_element_similiar_return_index_range():1
     res =  binary_search_range([2,2,2], 2)
     assert res == (0, 2)
+
 #номер 2 (не исправленный)
 def is_balanced_brackets(s):
-    # ( - 1, [ - 2, { - 3
-    count1 = 0
-    count2 = 0
-    count3 = 0
+    skobki = {')':'(', ']':'[', '}':'{'}
+    ochered = []
     for i in s:
-        if i in ['(', ')', '[', ']', '{', '}']:
-            if i == '(':
-                count1 +=1
-            elif i == ')':
-                count1 -= 1
-            elif i == '[':
-                count2 += 1
-            elif i == ']':
-                count2 -= 1
-            elif i == '{':
-                count3 +=1
-            else:
-                count3 -= 1
+        if i in skobki:
+            ochered.append(i)
+        elif i in skobki.values():
+            if ochered and (ochered[-1] == skobki[i]):
+                ochered.pop(-1)
+            else: return False
         else: continue
-    if count1 == count2 == count3 == 0:
-        return True
-    else:
-        return False
-# print(is_balanced_brackets("()[]{}"))
-# print(is_balanced_brackets("([{}])"))
-# print(is_balanced_brackets(""))
-# print(is_balanced_brackets("(]"))
-print(is_balanced_brackets("([)]"))
-# print(is_balanced_brackets("("))
-# print(is_balanced_brackets("a(b)c"))
+    if not ochered: return True
+    else: return False 
+    
+def test_is_balanced_brackets_empty_str_return_True():
+    res = is_balanced_brackets('')
+    assert res == True
+def test_is_balanced_brackets_skobki_without_pair_return_False():
+    res = is_balanced_brackets('(]')
+    assert res == False
+def test_is_balanced_brackets_skobki_with_near_pair_return_True():
+    res = is_balanced_brackets('()[]{}')
+    assert res == True
+def test_is_balanced_brackets_skobki_with_far_pair_return_True():
+    res = is_balanced_brackets('([{}])')
+    assert res == True
+def test_is_balanced_brackets_skobki_with_trash_return_True():
+    res = is_balanced_brackets('a(b)c')
+    assert res == True
