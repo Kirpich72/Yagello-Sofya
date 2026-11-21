@@ -1,23 +1,45 @@
+# номер 1
 def binary_search_range(lst, target):
-    answer = [-1, -1]
-    if target in lst:
-        first = -1
-        last = -1
-        for i in range(len(lst)):
-            if lst[i] == target:
-                if first == -1:
-                    first = i
-                last = i
-                if (last - first) > (answer[1] - answer[0]):
-                    answer[0] = first
-                    answer[1] = last
-            else: first = -1
-    return [answer[0], answer[1]]
-print(binary_search_range([1, 2, 2, 2, 3], 2))
-print(binary_search_range([2, 2, 2], 2))
-print(binary_search_range([1, 2, 3], 4))
-print(binary_search_range([], 1))
-
+    first = -1
+    last = -1
+    left = 0
+    right = len(lst)-1
+    while left <= right:
+        indMid = (left+right)//2
+        if lst[indMid] > target:
+            right = indMid -1
+        elif lst[indMid] < target:
+            left = indMid + 1
+        else:
+            first = indMid
+            right = indMid -1
+    left = 0
+    right = len(lst)-1
+    while left <= right:
+        indMid = (left+right)//2
+        if lst[indMid] > target:
+            right = indMid -1
+        elif lst[indMid] < target:
+            left = indMid + 1
+        else:
+            last = indMid
+            left = indMid + 1
+    return (first, last)
+        
+   
+def test_binary_search_range_empty_list_return_no_found():
+    res =  binary_search_range([], 1)
+    assert res == (-1, -1)
+def test_binary_search_range_element_not_in_list_return_no_found():
+    res =  binary_search_range([1,2,3], 4)
+    assert res == (-1, -1)
+def test_binary_search_range_many_element_in_list_return_index_ragnge():
+    res =  binary_search_range([1,2,2,2,3], 2)
+    assert res == (1, 3)
+def test_binary_search_range_all_element_similiar_return_index_range():1
+    res =  binary_search_range([2,2,2], 2)
+    assert res == (0, 2)
+#номер 2 (не исправленный)
 def is_balanced_brackets(s):
     # ( - 1, [ - 2, { - 3
     count1 = 0
