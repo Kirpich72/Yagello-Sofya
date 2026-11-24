@@ -1,3 +1,4 @@
+# вариант заданий: 22
 # номер 1
 def binary_search_range(lst, target):
     first = -1
@@ -70,3 +71,9 @@ def test_is_balanced_brackets_skobki_with_far_pair_return_True():
 def test_is_balanced_brackets_skobki_with_trash_return_True():
     res = is_balanced_brackets('a(b)c')
     assert res == True
+def test_is_balanced_brackets_skobki_mixed_return_False():
+    res = is_balanced_brackets('([)]')
+    assert res == False
+def test_is_balanced_brackets_one_skobka_return_False():
+    res = is_balanced_brackets('(')
+    assert res == False
